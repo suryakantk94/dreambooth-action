@@ -11,7 +11,7 @@ on:
       prompt-identifier:
         required: true
         description: A short string representing your custom trained style or concept. This should be an uncommon string of letters like `zxz`, rather than a common word or name like `sarah` of `dog`. You'll use this string in prompts when running the model like "a pencil sketch of zxz sitting in a meadow".
-        default: zxz
+        default: TOK
       max-train-steps:
         required: true
         description: Total number of training steps to perform. Higher numbers produce more accurate results, but take longer to run. Set this to something low like 100 to test that your workflow is working, then run again at a higher number like 2000 to train more accurately.
@@ -60,8 +60,8 @@ jobs:
           -H "Content-Type: application/json" \
           -d '{
                   "input": {
-                      "instance_prompt": "a photo of a ${{ inputs.prompt-identifier }} person",
-                      "class_prompt": "a photo of a person",
+                      "instance_prompt": "a photo of a ${{ inputs.prompt-identifier }} can",
+                      "class_prompt": "a photo of a white claw can",
                       "instance_data": "${{ steps.upload-training-data.outputs.INSTANCE_DATA_URL }}",
                       "max_train_steps": ${{ inputs.max-train-steps }}
                   },
